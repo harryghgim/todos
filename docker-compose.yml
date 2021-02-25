@@ -1,16 +1,21 @@
 version: '3.8'
 
 services:
-  web:
-    build: backend/.
+  backend:
+    build: backend/
     command: python /backend/manage.py runserver 0.0.0.0:8000
     volumes:
-      - backend:/backend
+      - ./backend:/backend
     ports:
       - 8000:8000
     depends_on:
       - db
   db:
     image: postgres:12
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+volumes:
+  postgres_data:
