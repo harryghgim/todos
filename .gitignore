@@ -129,4 +129,4 @@ dmypy.json
 .pyre/
 
 # vscode 세팅 파일
-settings.json
+.vscode/
