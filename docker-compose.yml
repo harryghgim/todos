@@ -10,14 +10,14 @@ services:
       - 8000:8000
     depends_on:
       - db
-    environment:
-      - SECRET_KEY="u^-*%)eivdil@ubmnaw3&r)2+3bh&n5%_k^^*r1y62ksi6xpk5"
+    env_file:
+      - .env
   db:
     image: postgres:12
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    env_file:
+      - .env
   frontend:
     build: frontend/
     command: npm start
