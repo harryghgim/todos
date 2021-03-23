@@ -16,6 +16,14 @@ services:
       - postgres_data:/var/lib/postgresql/data
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+  frontend:
+    image: frontend/
+    command: npm start
+    volumes:
+      - /frontend/node_modules
+      - ./frontend:/frontend
+    ports:
+      - 3000:3000
 
 volumes:
   postgres_data:

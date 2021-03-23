@@ -8,6 +8,7 @@ django = "*"
 psycopg2-binary = "==2.8.5"
 ipython = "*"
 djangorestframework = "~=3.11.0"
+django-cors-headers = "==3.4.0"
 
 [dev-packages]
 
