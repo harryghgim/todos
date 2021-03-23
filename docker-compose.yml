@@ -10,6 +10,8 @@ services:
       - 8000:8000
     depends_on:
       - db
+    environment:
+      - SECRET_KEY="u^-*%)eivdil@ubmnaw3&r)2+3bh&n5%_k^^*r1y62ksi6xpk5"
   db:
     image: postgres:12
     volumes:
