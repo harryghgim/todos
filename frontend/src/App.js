@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import axios from 'axios'; 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    tasks: []
+  }
+
+  componentDidMount() {
+    this.getTodos();
+  }
+
+  getTodos() {
+    axios
+      .get('http://localhost:8000/')
+      .then(res => {
+        this.setState({ tasks: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.tasks.map(item => (
+          <div key={item.id}>
+            <h1>{item.title}</h1>
+            <p>완료시각: {item.completed_at}</p>
+          </div>
+        ))}
+      </div>
+    )
+  }
 }
 
 export default App;
